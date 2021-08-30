@@ -1,4 +1,4 @@
-# IHA-4506 Advanced Robotics 2020
+# AUT-720 Advanced Robotics 2021-2022
 We'll use [[4]](https://github.com/modulabs/arm-control) for implementing and demonstrating the course assignments.  
 
 ## Prerequisit
