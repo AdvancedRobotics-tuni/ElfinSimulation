@@ -4,8 +4,8 @@ We'll use [[4]](https://github.com/modulabs/arm-control) for implementing and de
 ## Prerequisit
 It is recommended to use the following requirements to avoid any unforseen error during the implementation of the codes.
 
-- Ubuntu 18
-- ROS Melodic
+- Ubuntu 18 or newer
+- ROS Melodic or newer
 
 ## VMWare (Optional)
 If you are using windows or run an older version of ubuntu on your PC, you can use VMWare Workstation Player to run ubuntu 18 which is free for non-commercial use. In that case, follow the instructions below to install and prepare you virtual machine:
