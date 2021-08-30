@@ -97,6 +97,17 @@ $ echo "export SVGA_VGPU10=0" >> ~/.bashrc
 ```
 $ source devel/setup.bash
 ```
+
+- If your gazebo environment and the robot is too dark, find the corresponding world file (for example empty.world) location and add the followings to the world:
+```
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.25 0.25 0.25 1</background>
+      <shadows>false</shadows>
+    </scene>
+```
+
+
 ## References
 1. [ros_Control](http://wiki.ros.org/ros_control)
 2. [Write a new ros-controller](https://github.com/ros-controls/ros_control/wiki/controller_interface)
