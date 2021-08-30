@@ -28,11 +28,11 @@ The github repository provided here is the modified version of [4] that some of 
 
 ### Install gazebo-ros-pkgs and gazebo-ros-control
 
-    $ sudo apt-get install ros-melodic-gazebo-ros-pkgs ros-melodic-gazebo-ros-control
+    $ sudo apt-get install ros-melodic-gazebo-ros-pkgs ros-melodic-gazebo-ros-control (change melodic to noetic if using ROS NOETIC)
 
 ### Install effort-controllers to use torque-control interface
 
-    $ sudo apt-get install ros-melodic-effort-controllers
+    $ sudo apt-get install ros-melodic-effort-controllers (change melodic to noetic if using ROS NOETIC)
 
 ### Download and build 
 
