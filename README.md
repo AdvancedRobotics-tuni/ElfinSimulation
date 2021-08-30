@@ -20,7 +20,7 @@ $ sudo sh VMware-Player-15.5.6-16341506.x86_64.bundle  #change .bundle file name
 - Download an ubuntu .iso image from [Ubuntu 18 ISO file](https://releases.ubuntu.com/bionic/ubuntu-18.04.5-desktop-amd64.iso)
 - open VMWare Workstation Player and create an new environment from the ISO file and set the hardware properties as you wish.
 
-## ROS melodic
+## ROS melodic (Ubuntu 18)
 Install ROS melodic from [ROS Melodic installation guide](http://wiki.ros.org/melodic/Installation/Ubuntu)
 
 ## Installation
