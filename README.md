@@ -42,6 +42,26 @@ The github repository provided here is the modified version of [4] that some of 
     $ cd ~/catkin_ws/
     $ catkin_make
 
+### Ros Noetic (Ubuntu 20.04)
+Running the examples in ROS Noetic is also possible. The master branch does not work directly with noetic, some slight modifications are required in the launch files.
+
+Under the 'elfin/elfin_gazebo/launch' folder, find the line in all launch files
+
+`<param name="robot_description" command="$(find xacro)/xacro.py --inorder '$(find elfin_description)/urdf/elfin3.urdf.xacro'" />`
+
+and modify `xacro.py` to `xacro`, as 
+
+`<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find elfin_description)/urdf/elfin3.urdf.xacro'" />`
+
+Additionally, in the files `elfin3_empty_world.launch` and `elfin3_no_fric_no_joint_limit_world.launch`, find the line
+
+`<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" ns="/elfin"/>`
+
+and modify it as
+
+`<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns="/elfin"/>`
+
+
 ### Run examples
 Motion controllers in joint space
 
