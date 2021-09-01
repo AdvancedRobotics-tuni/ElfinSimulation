@@ -38,7 +38,7 @@ The github repository provided here is the modified version of [4] that some of 
 
     $ mkdir -p catkin_ws/src
     $ cd ~/catkin_ws/src
-    $ git clone https://github.com/AdvancedRobotics-iha4506/ElfinSimulation.git
+    $ git clone https://github.com/AdvancedRobotics-tuni/ElfinSimulation.git
     $ cd ~/catkin_ws/
     $ catkin_make
 
