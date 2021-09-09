@@ -52,8 +52,8 @@ PLUGINLIB_EXPORT_CLASS(arm_controllers::GravityCompAlternativeController, contro
 ```
 
 ## Modify other files for compiling the new controller
-### Plugin defition file: `package.xml`
-The plugins for defining the exported plugins to Ros is defined in the file `package.xml`. The original controller is given as
+### Plugin defition file: `controller_plugins.xml`
+The plugins for defining the exported plugins to Ros is defined in the file `controller_plugins.xml`. The original controller is given as
 ```
   <class name="arm_controllers/AdaptiveImpedanceController" type="arm_controllers::AdaptiveImpedanceController" base_class_type="controller_interface::ControllerBase">
     <description>
