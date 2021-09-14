@@ -52,7 +52,8 @@ $ ./controller_switcher.py
 ```
 
 The program then asks for a number from the user that corresponds to the cloned controllers:
-* 1 is for cloned_clik_controller_1 and 2 is for cloned_gravity. however you can later change these according to your need.
+* 1 is to switch to cloned_clik_controller_1 and 2 is for switching to cloned_gravity. however you can later change these according to your need.
+* before switching to any controller, the code loads the second controller first!
 * the code is continuesly listenning to a ros topic called /rqt_command_listener. you can use any method (use rqt topic publisher for example) to send messages over that topic that is being published directly to set target ee pose of elfin robot (only for cloned_clik_controller_1 controller).
 
 ## About the repository
