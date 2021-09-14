@@ -443,4 +443,36 @@
       link="elfin_dummy_gripper" />
   </joint>
   
+<!-- temp link 
+    <link name="dummy_link">
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.008 0.13 0.02"/>
+        </geometry>
+      </collision>
+
+      <visual>
+	 <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="/home/mehmanse/.gazebo/models/temp/meshes/temp.dae"/>
+        </geometry>
+      </visual>
+
+      <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+      </inertial>
+    </link>
+    
+    <joint name="dummy_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.0" rpy="0 1.57 0"/>
+      <parent link="elfin_link6"/>
+      <child link="dummy_link"/>
+    </joint>
+
+ -->
+    
+    
 </robot>

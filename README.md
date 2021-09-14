@@ -1,117 +1,89 @@
 # AUT-720 Advanced Robotics 2021-2022
-We'll use [[4]](https://github.com/modulabs/arm-control) for implementing and demonstrating the course assignments.  
+This repository provides an example of a very simple reactive controller. The main focus is to learn some ros functionalities that helps students with future implementations by:
+- cloning and starting to implement your own controller
+- learning how to communicate between different nodes using ros subscriber/publisher
+- how to coordinate robot actions in case you have different controllers implemented (switching between task space and joint space for example and etc.)
 
 ## Prerequisit
-It is recommended to use the following requirements to avoid any unforseen error during the implementation of the codes.
+For this excercise students must have already done setting up their ubuntu/ros and are familiar with launching the elfin simulation.
 
-- Ubuntu 18 or newer
-- ROS Melodic or newer
+## Example intro
+This example utilizes ros control services and ros subscriber/publisher to make a network of different nodes and coordinate the actions of the robot.
+- two nodes are cloned where the first one is gravity_comp_controller that controls the motion in joint space, and also the second controller is cloned from computed_torque_clik_controller
+that works in task space.
+- in addition to these separate nodes, a controller switcher node is implemented that is able to:
+1. load, stop and start controllers using ros control services
+2. communicate with arm controller using ros topic messages
 
-## VMWare (Optional)
-If you are using windows or run an older version of ubuntu on your PC, you can use VMWare Workstation Player to run ubuntu 18 which is free for non-commercial use. In that case, follow the instructions below to install and prepare you virtual machine:
-
-- depending on your current version of operating system, download one of the installers from [VMWare Installers](https://www.vmware.com/fi/products/workstation-player/workstation-player-evaluation.html).
-- on windows, just run the installer GUI and follow the instructions
-- on Ubuntu install it from command lines:
+### clone the repository
+in order to run the examples, clone this repository in some other directory than before and run catkin_make again:
 ```
-$ cd "PATH/TO/DOWNLOADED/FOLDER"  #change directory to where you have downloaded the .bundle (installer) file
-$ sudo sh VMware-Player-15.5.6-16341506.x86_64.bundle  #change .bundle file name if necessary
-```
-- Download an ubuntu .iso image from [Ubuntu 18 ISO file](https://releases.ubuntu.com/bionic/ubuntu-18.04.5-desktop-amd64.iso)
-- open VMWare Workstation Player and create an new environment from the ISO file and set the hardware properties as you wish.
-
-## ROS melodic (Ubuntu 18)
-Install ROS melodic from [ROS Melodic installation guide](http://wiki.ros.org/melodic/Installation/Ubuntu)
-
-## Installation
-The github repository provided here is the modified version of [4] that some of its bugs are fixed and we'll maintain it during the course implementation.
-
-### Install gazebo-ros-pkgs and gazebo-ros-control
-
-    $ sudo apt-get install ros-melodic-gazebo-ros-pkgs ros-melodic-gazebo-ros-control (change melodic to noetic if using ROS NOETIC)
-
-### Install effort-controllers to use torque-control interface
-
-    $ sudo apt-get install ros-melodic-effort-controllers (change melodic to noetic if using ROS NOETIC)
-
-### Download and build 
-
-    $ mkdir -p catkin_ws/src
-    $ cd ~/catkin_ws/src
-    $ git clone https://github.com/AdvancedRobotics-tuni/ElfinSimulation.git
-    $ cd ~/catkin_ws/
-    $ catkin_make
-
-### Ros Noetic (Ubuntu 20.04)
-Running the examples in ROS Noetic is also possible. The master branch does not work directly with noetic, some slight modifications are required in the launch files.
-
-Under the 'elfin/elfin_gazebo/launch' folder, find the line in all launch files
-
-`<param name="robot_description" command="$(find xacro)/xacro.py --inorder '$(find elfin_description)/urdf/elfin3.urdf.xacro'" />`
-
-and modify `xacro.py` to `xacro`, as 
-
-`<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find elfin_description)/urdf/elfin3.urdf.xacro'" />`
-
-Additionally, in the files `elfin3_empty_world.launch` and `elfin3_no_fric_no_joint_limit_world.launch`, find the line
-
-`<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" ns="/elfin"/>`
-
-and modify it as
-
-`<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns="/elfin"/>`
-
-
-### Run examples
-Motion controllers in joint space
-
-    $ roslaunch elfin_gazebo elfin3_empty_world.launch controller:=gravity_comp_controller
-    or
-    $ roslaunch elfin_gazebo elfin3_empty_world.launch controller:=time_delay_controller
-    or
-    $ roslaunch elfin_gazebo elfin3_empty_world.launch controller:=computed_torque_controller
-    or
-    $ roslaunch elfin_gazebo elfin3_empty_world.launch controller:=computed_torque_clik_controller
-
-If you want to use motion and force controller in task space, then you may choose this controllers as follows:
-
-    $ roslaunch elfin_gazebo elfin3_experiment1_world.launch controller:=adaptive_impedance_controller
-    or
-    $ roslaunch elfin_gazebo elfin3_experiment2_world.launch controller:=adaptive_impedance_controller
-
-If you want to plot data in rqt graph, use rqt_plot.launch file. Customize perspective files to plot data you need.
-
-    $ roslaunch rqt_plot.launch controller:=gravity_comp_controller
-
-
-
-## Notes
-- If you are using VMWare and gazebo keeps crashing during run time, try the following:
-
-```
-$ echo "export SVGA_VGPU10=0" >> ~/.bashrc
-``` 
-- before running any of the sample codes, you also need to issue the following command from your /catkin_ws directory so the built nodes and launch files could be found in terminal:
-
-
-```
+$ mkdir -p /another_ws/src
+$ cd another_ws/src
+$ git clone https://github.com/AdvancedRobotics-tuni/ElfinSimulation.git
+$ cd ElfinSimulation
+$ git checkout reactive_control_example
+$ cd ../..
+$ catkin_make
 $ source devel/setup.bash
+
 ```
 
-- If your gazebo environment and the robot is too dark, find the corresponding world file (for example empty.world) location and add the followings to the world:
+### how to run
+1. first run the simulation and the first controller using the command:
 ```
-    <scene>
-      <ambient>0.4 0.4 0.4 1</ambient>
-      <background>0.25 0.25 0.25 1</background>
-      <shadows>false</shadows>
-    </scene>
+$ roslaunch elfin_gazebo elfin3_empty_world.launch controller:=cloned_clik_controller_1
+```
+2. go to the directory of switcher node:
+```
+$ cd ~/another_ws/src/ElfinSimulation/arm_controllers/custom_script
+
+```
+2. make the code executable:
+```
+$ chmod +x controller_switcher.py
+
+```
+3. run the code:
+
+```
+$ ./controller_switcher.py
+
 ```
 
+The program then asks for a number from the user that corresponds to the cloned controllers:
+* 1 is for cloned_clik_controller_1 and 2 is for cloned_gravity. however you can later change these according to your need.
+* the code is continuesly listenning to a ros topic called /rqt_command_listener. you can use any method (use rqt topic publisher for example) to send messages over that topic that is being published directly to set target ee pose of elfin robot (only for cloned_clik_controller_1 controller).
 
-## References
-1. [ros_Control](http://wiki.ros.org/ros_control)
-2. [Write a new ros-controller](https://github.com/ros-controls/ros_control/wiki/controller_interface)
-3. [Elfin Robot](http://wiki.ros.org/Robots/Elfin)
-4. [Elfin Simulation package](https://github.com/modulabs/arm-control)
-5. [ROS](http://wiki.ros.org/)
+## About the repository
+This repository is a clone of course github's master branch. To be able to run the example, the followings are changed:
+
+### two new arm controllers are cloned
+read the instructions on [how to add new controller](https://github.com/AdvancedRobotics-tuni/ElfinSimulation/tree/master/arm_controllers#readme) to clone the followings:
+
+gravity_comp_controller -> cloned_gravity
+computed_torque_clik_controller ->  cloned_clik_controller_1
+
+### custom yaml file
+in addition to steps above, you'll need to create a new config file that include both controller's initial parameters:
+find switch_controllers.yaml in config folder of elfin gazebo and see it is implemented. It is worth mentioning that the PID gains that are set in this config file are not optimal and they are only set here to have some stable behaviour.
+
+### custom launch file
+a new launch file is added to load custom config file and run only one of the controllers at the launch time.
+
+to run simulation:
+
+```
+$ roslaunch elfin_gazebo elfin3_empty_world.launch controller:=cloned_clik_controller_1
+```
+
+### controller switcher script
+A python script is provided in ElfinSimulation/Arm_Controllers/custom_scripts that provide some functions to load, start and stop the controllers and also to communicate with controller nodes through ros topics. The same ros functionalities are also available in C++ so if you are more familiar with C++, you can implement your own service clients there using the following instructions:
+
+[ros subscriber and publisher in C++](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29)
+[ros service and client in C++](http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29)
+
+
+
+
 

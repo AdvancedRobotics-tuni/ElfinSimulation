@@ -15,17 +15,17 @@ elfin:
         
       gains:
         elfin_joint1: 
-          pid: {p: 100.0, i: 0, d: 20.0}
+          pid: {p: 5000.0, i: 0, d: 100.0}
         elfin_joint2: 
-          pid: {p: 100.0, i: 0, d: 20.0}
+          pid: {p: 5000.0, i: 0, d: 100.0}
         elfin_joint3: 
-          pid: {p: 100.0, i: 0, d: 20.0}
+          pid: {p: 5000.0, i: 0, d: 100.0}
         elfin_joint4: 
-          pid: {p: 100.0, i: 0, d: 20.0}
+          pid: {p: 5000.0, i: 0, d: 100.0}
         elfin_joint5: 
-          pid: {p: 100.0, i: 0, d: 20.0}
+          pid: {p: 5000.0, i: 0, d: 100.0}
         elfin_joint6: 
-          pid: {p: 100.0, i: 0, d: 20.0}
+          pid: {p: 5000.0, i: 0, d: 100.0}
 
       root_link: world
       tip_link: elfin_link6
@@ -36,4 +36,4 @@ elfin:
       ik_mode: 2 # open-loop inverse kinematics using jacobian
                  # closed-loop inverse Kinematics using jacobian
 
-      clik_gain: {K_regulation: 6.0, K_tracking: 1.0}
+      clik_gain: {K_regulation: 3.0, K_tracking: 1.0}

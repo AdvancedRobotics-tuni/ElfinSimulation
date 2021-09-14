@@ -24,6 +24,24 @@
     </description>
   </class>
 
+  <class name="arm_controllers/Cloned_CLIK_controller_1" type="arm_controllers::Cloned_CLIK_controller_1" base_class_type="controller_interface::ControllerBase">
+    <description>
+	    Computed Torque Controller with Closed Loop Inverse Kinematics clone 1
+    </description>
+  </class>
+  
+   <class name="arm_controllers/Cloned_CLIK_controller_2" type="arm_controllers::Cloned_CLIK_controller_2" base_class_type="controller_interface::ControllerBase">
+    <description>
+	    Computed Torque Controller with Closed Loop Inverse Kinematics clone 2
+    </description>
+  </class>
+  
+    <class name="arm_controllers/Cloned_Gravity" type="arm_controllers::Cloned_Gravity" base_class_type="controller_interface::ControllerBase">
+    <description>
+	    Cloned_Gravity 
+    </description>
+  </class>
+
   <class name="arm_controllers/AdaptiveImpedanceController" type="arm_controllers::AdaptiveImpedanceController" base_class_type="controller_interface::ControllerBase">
     <description>
 	    Adaptive Impedance Controller
