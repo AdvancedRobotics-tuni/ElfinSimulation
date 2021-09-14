@@ -62,8 +62,8 @@ This repository is a clone of course github's master branch. To be able to run t
 ### two new arm controllers are cloned
 read the instructions on [how to add new controller](https://github.com/AdvancedRobotics-tuni/ElfinSimulation/tree/master/arm_controllers#readme) to clone the followings:
 
-gravity_comp_controller -> cloned_gravity
-computed_torque_clik_controller ->  cloned_clik_controller_1
+* gravity_comp_controller -> cloned_gravity.
+* computed_torque_clik_controller ->  cloned_clik_controller_1.
 
 ### custom yaml file
 in addition to steps above, you'll need to create a new config file that include both controller's initial parameters:
