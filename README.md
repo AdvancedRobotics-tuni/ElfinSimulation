@@ -67,7 +67,7 @@ read the instructions on [how to add new controller](https://github.com/Advanced
 
 ### Custom yaml file
 in addition to steps above, you'll need to create a new config file that include both controller's initial parameters:
-find switch_controllers.yaml in config folder of elfin gazebo and see it is implemented. It is worth mentioning that the PID gains that are set in this config file are not optimal and they are only set here to have some stable behaviour.
+find switch_controllers.yaml in config folder of elfin gazebo and see how it is implemented. It is worth mentioning that the PID gains that are set in this config file are not optimal and they are only set here to have some stable behaviour.
 
 ### Custom launch file
 a new launch file is added to load custom config file and run only one of the controllers at the launch time.
