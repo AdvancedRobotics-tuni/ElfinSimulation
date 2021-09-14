@@ -81,8 +81,8 @@ $ roslaunch elfin_gazebo controller_switcher_example.launch controller:=cloned_c
 ### Controller switcher script
 A python script is provided in ElfinSimulation/Arm_Controllers/custom_scripts that provide some functions to load, start and stop the controllers and also to communicate with controller nodes through ros topics. The same ros functionalities are also available in C++ so if you are more familiar with C++, you can implement your own service clients there using the following instructions:
 
-[ros subscriber and publisher in C++](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29)
-[ros service and client in C++](http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29)
+* [ros subscriber and publisher in C++](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29)
+* [ros service and client in C++](http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29)
 
 
 
