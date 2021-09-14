@@ -15,7 +15,7 @@ that works in task space.
 1. load, stop and start controllers using ros control services
 2. communicate with arm controller using ros topic messages
 
-### clone the repository
+### Clone the repository
 in order to run the examples, clone this repository in some other directory than before and run catkin_make again:
 ```
 $ mkdir -p /another_ws/src
@@ -29,7 +29,7 @@ $ source devel/setup.bash
 
 ```
 
-### how to run
+### How to run
 1. first run the simulation and the first controller using the command:
 ```
 $ roslaunch elfin_gazebo elfin3_empty_world.launch controller:=cloned_clik_controller_1
@@ -59,17 +59,17 @@ The program then asks for a number from the user that corresponds to the cloned 
 ## About the repository
 This repository is a clone of course github's master branch. To be able to run the example, the followings are changed:
 
-### two new arm controllers are cloned
+### Two new arm controllers are cloned
 read the instructions on [how to add new controller](https://github.com/AdvancedRobotics-tuni/ElfinSimulation/tree/master/arm_controllers#readme) to clone the followings:
 
 * gravity_comp_controller -> cloned_gravity.
 * computed_torque_clik_controller ->  cloned_clik_controller_1.
 
-### custom yaml file
+### Custom yaml file
 in addition to steps above, you'll need to create a new config file that include both controller's initial parameters:
 find switch_controllers.yaml in config folder of elfin gazebo and see it is implemented. It is worth mentioning that the PID gains that are set in this config file are not optimal and they are only set here to have some stable behaviour.
 
-### custom launch file
+### Custom launch file
 a new launch file is added to load custom config file and run only one of the controllers at the launch time.
 
 to run simulation:
@@ -78,7 +78,7 @@ to run simulation:
 $ roslaunch elfin_gazebo elfin3_empty_world.launch controller:=cloned_clik_controller_1
 ```
 
-### controller switcher script
+### Controller switcher script
 A python script is provided in ElfinSimulation/Arm_Controllers/custom_scripts that provide some functions to load, start and stop the controllers and also to communicate with controller nodes through ros topics. The same ros functionalities are also available in C++ so if you are more familiar with C++, you can implement your own service clients there using the following instructions:
 
 [ros subscriber and publisher in C++](http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29)
